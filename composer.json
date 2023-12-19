@@ -1,0 +1,20 @@
+{
+    "name": "payable/sdk-php",
+    "description": "PHP SDK for PayAbl",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Payable\\SdkPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nikita Pushkar",
+            "email": "nikitospush@gmail.com"
+        }
+    ]
+}
