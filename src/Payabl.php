@@ -2,8 +2,7 @@
 
 namespace PayableSdkPhp;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+
 use PayableSdkPhp\Exceptions\PayablException;
 use Dotenv\Dotenv;
 use PayableSdkPhp\Resources\Payabl\PaymentResource;
@@ -18,7 +17,7 @@ class Payabl{
     }
 
     public function payment(): PaymentResource {
-         
+
 
         if (is_null($this->payment)){
             $this->payment = new PaymentResource();

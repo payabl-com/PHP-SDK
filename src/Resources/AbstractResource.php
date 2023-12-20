@@ -2,8 +2,6 @@
 
 namespace PayableSdkPhp\Resources;
 
-
-
 use PayableSdkPhp\Exceptions\PayablException;
 use PayableSdkPhp\PayablAdapter;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
