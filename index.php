@@ -4,7 +4,7 @@
 require_once 'src/Payabl.php';
 require 'vendor/autoload.php';
 
-use Payabl\Payabl;
+use Payable\SdkPhp\Payabl;
 
 echo "\n";
 echo "===\n";

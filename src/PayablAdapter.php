@@ -3,7 +3,10 @@
 namespace Payable\SdkPhp;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
+use Payable\SdkPhp\Exceptions\PayablException;
+use Payable\SdkPhp\Resources\AbstractResource;
 
 class PayablAdapter
 {
@@ -93,7 +96,6 @@ class PayablAdapter
 
     private function generateSignature($params): string {
 
-        $params = $this->prepareArray();
         // Сортируем параметры по ключам в алфавитном порядке
         ksort($params);
 

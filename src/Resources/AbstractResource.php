@@ -1,9 +1,13 @@
 <?php
 
-namespace Payable\SdkPhp;
+namespace Payable\SdkPhp\Resources;
 
-use Cassandra\Exception\ValidationException;
-use Payabl\Payabl;
+
+
+use Payable\SdkPhp\Exceptions\PayablException;
+use Payable\SdkPhp\PayablAdapter;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
+use Spatie\DataTransferObject\Exceptions\ValidationException;
 
 abstract class AbstractResource
 {

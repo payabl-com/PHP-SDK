@@ -3,9 +3,11 @@
     "description": "PHP SDK for PayAbl",
     "type": "library",
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.2",
+       
+         
         "guzzlehttp/guzzle": "^7.8",
-        "spatie/data-transfer-object": "^2.8"
+        "spatie/data-transfer-object": "^3.9"
      
     },
     "license": "MIT",
@@ -15,7 +17,8 @@
         }
     },
     "require-dev": {
-        "symfony/test-pack": "^1.0"
+        "symfony/test-pack": "^1.0",
+        "phpunit/phpunit": "^9.6"
     },
     "minimum-stability": "stable",
     "authors": [
