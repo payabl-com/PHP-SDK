@@ -25,7 +25,7 @@ class Payabl{
         return $this->payment;
     }
 
-    // другие методы будут здесь
+    // todo: add more resources
 
 
     public function __call(string $name, array $params): void

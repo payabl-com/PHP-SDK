@@ -84,12 +84,9 @@ class PayablAdapter
 
     private function request(string $method, $uri = '', array $options = []): PayablResponse
     {
-        // здесь логика саоздания сигнатуры
         $method = strtolower($method);
         try {
-
             $response = $this->client->$method($uri, $options);
-
 
         } catch (ClientException $e) {
 
@@ -112,14 +109,8 @@ class PayablAdapter
     private function generateSignature($params): string
     {
         ksort($params);
-
-        // Конкатенируем значения параметров
         $concatenatedParams = implode('', array_values($params));
-
-        // Добавляем секрет к концу строки
         $concatenatedParams .= $this->secret;
-
-        // Вычисляем SHA-1 хеш строки и приводим его к нижнему регистру
         return strtolower(sha1($concatenatedParams));
     }
 

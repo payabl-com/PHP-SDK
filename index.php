@@ -6,10 +6,6 @@ require 'vendor/autoload.php';
 
 use PayableSdkPhp\Payabl;
 
-echo "\n";
-echo "===\n";
-echo "\n";
-
 $payabl = new Payabl();
 $paymentParams = [
     "amount"=> 33.33,
@@ -38,7 +34,6 @@ $paymentParams = [
 
 ];
 $transaction = $payabl->payment()->payNow($paymentParams);
-
 dump($transaction);
 die();
 

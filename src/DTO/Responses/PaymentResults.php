@@ -9,5 +9,5 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class PaymentResults extends  DataTransferObject
 {
-///  что то будет здесь
+
 }
