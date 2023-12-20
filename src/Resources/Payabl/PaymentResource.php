@@ -1,9 +1,9 @@
 <?php
 
-namespace Payable\SdkPhp\Resources\Payabl;
+namespace PayableSdkPhp\Resources\Payabl;
 
-use Payable\SdkPhp\DTO\Responses\PaymentResults;
-use Payable\SdkPhp\Resources\AbstractPayablResource;
+use PayableSdkPhp\DTO\Responses\PaymentResults;
+use PayableSdkPhp\Resources\AbstractPayablResource;
 
 class PaymentResource extends AbstractPayablResource
 {
@@ -11,9 +11,9 @@ class PaymentResource extends AbstractPayablResource
     public function payNow(array $params): PaymentResults
     {
         $this->validateParams(PaymentResults::class, $params);
-        $url = 'search/page' . "?" . http_build_query($params);
+        $url = '/payment_authorize';
 
-        return $this->adapter->handle('get', $url, PaymentResults::class);
+        return $this->adapter->handle('post', $this->getApiRoot().$url, $params, PaymentResults::class);
     }
 
 
@@ -23,7 +23,7 @@ class PaymentResource extends AbstractPayablResource
 
         $url = 'search/title' . "?" . http_build_query($params);
 
-        return $this->adapter->handle('get', $url, PaymentResults::class);
+        return $this->adapter->handle('post', $url, $params,PaymentResults::class);
     }
 
 
@@ -33,7 +33,7 @@ class PaymentResource extends AbstractPayablResource
 
         $url = 'search/title' . "?" . http_build_query($params);
 
-        return $this->adapter->handle('get', $url, PaymentResults::class);
+        return $this->adapter->handle('post', $url,$params, PaymentResults::class);
     }
 
     public function capture(array $params): PaymentResults
@@ -42,7 +42,7 @@ class PaymentResource extends AbstractPayablResource
 
         $url = 'search/title' . "?" . http_build_query($params);
 
-        return $this->adapter->handle('get', $url, PaymentResults::class);
+        return $this->adapter->handle('post', $url, $params,PaymentResults::class);
     }
 
     public function cancel(array $params): PaymentResults
@@ -51,7 +51,7 @@ class PaymentResource extends AbstractPayablResource
 
         $url = 'search/title' . "?" . http_build_query($params);
 
-        return $this->adapter->handle('get', $url, PaymentResults::class);
+        return $this->adapter->handle('post', $url, $params,PaymentResults::class);
     }
 
 

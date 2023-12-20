@@ -1,6 +1,6 @@
 <?php
 
-namespace Payable\SdkPhp;
+namespace PayableSdkPhp;
 
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\StreamInterface;

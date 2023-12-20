@@ -1,19 +1,27 @@
 <?php
 
-namespace Payable\SdkPhp;
+namespace PayableSdkPhp;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Payable\SdkPhp\Exceptions\PayablException;
+use PayableSdkPhp\Exceptions\PayablException;
+use Dotenv\Dotenv;
+use PayableSdkPhp\Resources\Payabl\PaymentResource;
 
 class Payabl{
 
-    private ?PayablResponse $payment = null ;
+    private ?PaymentResource $payment = null ;
 
-    public function payment(): PayablResponse {
+    public function __construct(){
+        $dotenv = Dotenv::createImmutable(__DIR__ . "../..");
+        $dotenv->load();
+    }
+
+    public function payment(): PaymentResource {
+         
 
         if (is_null($this->payment)){
-            $this->payment = new PayablResponse();
+            $this->payment = new PaymentResource();
         }
         return $this->payment;
     }

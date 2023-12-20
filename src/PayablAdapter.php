@@ -1,46 +1,53 @@
 <?php
 
-namespace Payable\SdkPhp;
+namespace PayableSdkPhp;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use Payable\SdkPhp\Exceptions\PayablException;
-use Payable\SdkPhp\Resources\AbstractResource;
+use PayableSdkPhp\Exceptions\PayablException;
+use PayableSdkPhp\Resources\AbstractResource;
 
 class PayablAdapter
 {
     const PAYABL_API_VERSION = 'v1.0';
     private Client $client;
     private string $secret;
-    public function __construct (?AbstractResource $resource = null){
+    private string $merchantId;
+
+    public function __construct(?AbstractResource $resource = null)
+    {
         $baseUrl = $_ENV['PAYABL_BASE_URL'];
         $this->secret = $_ENV['PAYABL_SECRET'];
+        $this->merchantId = $_ENV['PAYABL_MERCHANT_ID'];
         $this->client = new Client(
             [
-                'base_url'=>$baseUrl."/",
-                'headers'=>[
-                    'User-Agent'=>'Payabl PHP-SDK v.0.1',
-                    'Accept'=>'application/json',
-                    'Content-Type'=>'application/json'
+                'base_uri' => $baseUrl . "/",
+                'headers' => [
+                    'User-Agent' => 'Payabl PHP-SDK v.0.1',
+                    'Accept' => 'text/plain',
+                    'Content-Type' => 'application/json'
                 ],
             ]
         );
     }
 
 
-    public function handle (string $httpMethod, string $url, string $responseDTOClass){
+    public function handle(string $httpMethod, string $url, array $options , string $responseDTOClass)
+    {
         $error = [];
         try {
-            $response =  $this->$httpMethod($url);
+
+            $response = $this->$httpMethod($url, $options);
             $data = $response->toArray();
 
-            if ($response->getStatusCode() !== 200 ){
+
+            if ($response->getStatusCode() !== 200) {
                 $error = $this->generateError($data);
             }
-        } catch (ServerException $e){
+        } catch (ServerException $e) {
             $response = $e->getResponse();
-            $data  = json_decode((string) $response->getBody(), true);
+            $data = json_decode((string)$response->getBody(), true);
             $error = $this->generateError($data);
         }
 
@@ -68,10 +75,11 @@ class PayablAdapter
         return $this->request('GET', $url, $options);
     }
 
-    public function post(string $url, array $options = []): PayablResponse
+    public function post(string $url,  array $options = []): PayablResponse
     {
         $options = $this->getArrayWithSignature($options);
-        return $this->request('POST', $url, $options);
+
+        return $this->request('POST', $url, ['form_params' => $options]);
     }
 
     private function request(string $method, $uri = '', array $options = []): PayablResponse
@@ -79,8 +87,12 @@ class PayablAdapter
         // здесь логика саоздания сигнатуры
         $method = strtolower($method);
         try {
+
             $response = $this->client->$method($uri, $options);
+
+
         } catch (ClientException $e) {
+
             $response = $e->getResponse();
         }
 
@@ -88,15 +100,17 @@ class PayablAdapter
     }
 
 
-    private function getArrayWithSignature(array $params):array
+    private function getArrayWithSignature(array $params): array
     {
+        $params['merchantid'] = $this->merchantId;
+
         $params['signature'] = $this->generateSignature($params);
+
         return $params;
     }
 
-    private function generateSignature($params): string {
-
-        // Сортируем параметры по ключам в алфавитном порядке
+    private function generateSignature($params): string
+    {
         ksort($params);
 
         // Конкатенируем значения параметров
@@ -110,12 +124,9 @@ class PayablAdapter
     }
 
 
-    /**
-     * Generates error object from "bad" Payabl response (status of response >=400)
-     */
-    #[ArrayShape(['message' => "mixed", 'reason' => "mixed", 'code' => "mixed"])]
     public function generateError(array $data, int $status): array
     {
+
         // For Payabl response
         if (array_key_exists('httpReason', $data)) {
             return [
@@ -125,7 +136,7 @@ class PayablAdapter
             ];
         }
 
-        // For WikiMedia response
+        // For Payabl response
         if (array_key_exists('detail', $data)) {
             return [
                 'message' => $data['detail'],
@@ -140,6 +151,6 @@ class PayablAdapter
             'code' => 0
         ];
     }
-    
+
 
 }

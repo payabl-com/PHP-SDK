@@ -1,9 +1,9 @@
 <?php
 
 
-use Payable\SdkPhp\Exceptions\PayablException;
-use Payable\SdkPhp\Payabl;
-use Payable\SdkPhp\Resources\Payabl\PaymentResource;
+use PayableSdkPhp\Exceptions\PayablException;
+use PayableSdkPhp\Payabl;
+use PayableSdkPhp\Resources\Payabl\PaymentResource;
 use PHPUnit\Framework\TestCase;
 
 class PayablTest extends TestCase
@@ -28,8 +28,8 @@ class PayablTest extends TestCase
         $this->expectExceptionCode(404);
         $this->expectExceptionMessage('The specified resource (tickets) does not exist');
 
-        $wiki     = new Payabl();
-        $wiki->tickets();
+        $payabl     = new Payabl();
+        $payabl->tickets();
     }
 
 }

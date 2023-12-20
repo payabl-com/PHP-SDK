@@ -1,8 +1,8 @@
 <?php
 
-namespace Payable\SdkPhp\DTO\Requests;
+namespace PayableSdkPhp\DTO\Requests;
 
-use Payable\SdkPhp\DataTransferObject;
+use PayableSdkPhp\DataTransferObject;
 
 class PaymentRequest extends  DataTransferObject
 {

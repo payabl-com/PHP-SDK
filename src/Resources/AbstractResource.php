@@ -1,11 +1,11 @@
 <?php
 
-namespace Payable\SdkPhp\Resources;
+namespace PayableSdkPhp\Resources;
 
 
 
-use Payable\SdkPhp\Exceptions\PayablException;
-use Payable\SdkPhp\PayablAdapter;
+use PayableSdkPhp\Exceptions\PayablException;
+use PayableSdkPhp\PayablAdapter;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 use Spatie\DataTransferObject\Exceptions\ValidationException;
 

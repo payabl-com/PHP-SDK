@@ -1,6 +1,6 @@
 <?php
 
-namespace Payable\SdkPhp\Resources;
+namespace PayableSdkPhp\Resources;
 
 abstract class AbstractPayablResource  extends AbstractResource
 {

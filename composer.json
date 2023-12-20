@@ -4,16 +4,15 @@
     "type": "library",
     "require": {
         "php": ">=8.2",
-       
-         
         "guzzlehttp/guzzle": "^7.8",
-        "spatie/data-transfer-object": "^3.9"
-     
+        "spatie/data-transfer-object": "^3.9",
+        "vlucas/phpdotenv": "^5.6",
+        "symfony/var-dumper": "^7.0"
     },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Payable\\SdkPhp\\": "src/"
+            "PayableSdkPhp\\": "src/"
         }
     },
     "require-dev": {

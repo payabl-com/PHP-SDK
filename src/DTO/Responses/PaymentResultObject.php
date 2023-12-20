@@ -1,6 +1,6 @@
 <?php
 
-namespace Payable\SdkPhp\DTO\Responses;
+namespace PayableSdkPhp\DTO\Responses;
 
 class PaymentResultObject
 {
