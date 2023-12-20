@@ -117,25 +117,25 @@ $paymentParams = [
 
 try {
     //  оплата сразу
-    $transaction = $payabl->payment->payNow($paymentParams);
+    $transaction = $payabl->payment()->payNow($paymentParams);
     // refund
-    $refund = $payabl->payment->makerefund($transaction);
+    $refund = $payabl->payment()->makeRefund($transaction);
 
     // оплата с задержкой
-    $transaction = $payabl->payment->delayPayment($paymentParams);
-    $payabl->payment->capture($transaction);
+    $transaction = $payabl->payment()->payLater($paymentParams);
+    $payabl->payment()->capture($transaction);
 
     // если capture не было то можно отменить
-    $payabl->payment->cancel($transaction);
+    $payabl->payment()->cancel($transaction);
 
 
-} catch (PayablException $exception){
+} catch (PayablException $e){
     // ...
 }
 
 try {
     $transaction = $payabl->buyticket()->buy("wrong resourse ");
-} catch (PaybleException $exception){
+} catch (PaybleException $e){
     // ...
 }
 
