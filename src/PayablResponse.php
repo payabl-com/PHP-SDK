@@ -8,13 +8,13 @@ use Psr\Http\Message\StreamInterface;
 
 class PayablResponse
 {
-    private int             $statusCode;
-    private StreamInterface $body;
+    private int $statusCode;
+    private string $content;
 
     public function __construct(Response $response)
     {
         $this->statusCode = $response->getStatusCode();
-        $this->body       = $response->getBody();
+        $this->content = (string) $response->getBody();
     }
 
     public function getStatusCode(): int
@@ -24,18 +24,14 @@ class PayablResponse
 
     public function getContent(): string
     {
-        return (string) $this->body;
+        return $this->content;
     }
 
-    /**
-     * @param int  $depth
-     * @param int  $flags
-     *
-     * @return mixed
-     */
-    public function toArray(int $depth = 512, int $flags = 0): mixed
+
+    public function toArray(): array
     {
-        return json_decode($this->getContent(), true, $depth, $flags);
+        parse_str($this->getContent(), $resultArr);
+        return $resultArr;
     }
 
 }

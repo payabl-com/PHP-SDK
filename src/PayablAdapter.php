@@ -41,8 +41,6 @@ class PayablAdapter
 
             $response = $this->$httpMethod($url, $options);
             $data = $response->toArray();
-
-
             if ($response->getStatusCode() !== 200) {
                 $error = $this->generateError($data);
             }
@@ -52,12 +50,15 @@ class PayablAdapter
             $error = $this->generateError($data);
         }
 
+
         if ($error) {
             throw new PayablException($error);
         }
 
+
         try {
             $res = new $responseDTOClass($data);
+
         } catch (Exception $e) {
             $error = [
                 'reason' => 'Response validation: Unknown properties',
