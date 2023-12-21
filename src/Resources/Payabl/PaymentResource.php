@@ -15,7 +15,6 @@ class PaymentResource extends AbstractPayablResource
 
         return $this->adapter->handle('post', $this->getApiRoot().$url, $params, PaymentResults::class);
     }
-
-
+ 
 
 }

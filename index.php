@@ -8,28 +8,28 @@ use PayableSdkPhp\Payabl;
 
 $payabl = new Payabl();
 $paymentParams = [
-    "amount"=> 33.33,
+    "amount"=> 3.14,
     "orderid"=> "123",
     "currency"=> "EUR",
     "payment_method"=> 1,
 
-    "cardholder_name"=> "Nikita Pushkar",
+    "cardholder_name"=> "John Doe",
     "ccn"=> "5413530000000501",
     "exp_month"=> "12",
     "exp_year"=> "2040",
     "cvc_code"=> "196",
 
     "customerip"=> "127.0.1.1",
-    "email"=> "nikita.pushka@payable.com",
-    "firstname"=> "Nikita",
-    "lastname"=> "Pushkar",
+    "email"=> "john_doe@gmail.com",
+    "firstname"=> "John",
+    "lastname"=> "Doe",
     "language"=> "de",
 
-    "company"=> "Powerpay21",
+    "company"=> "horns and hooves",
     "country"=> "DEU",
     "city"=> "Wiesbaden",
     "state"=> "HE",
-    "street"=> "Wald str",
+    "street"=> "Wilhelm str 15",
     "zip"=> "65197",
 
 ];

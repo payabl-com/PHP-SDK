@@ -4,7 +4,7 @@ namespace PayableSdkPhp\DTO\Responses;
 
 
 
-class PaymentResults extends  DataTransferObject
+class PaymentResults
 {
 
 }
