@@ -17,42 +17,5 @@ class PaymentResource extends AbstractPayablResource
     }
 
 
-    public function payLater(array $params): PaymentResults
-    {
-        $this->validateParams(PaymentResults::class, $params);
-
-        $url = 'search/title' . "?" . http_build_query($params);
-
-        return $this->adapter->handle('post', $url, $params,PaymentResults::class);
-    }
-
-
-    public function refund(array $params): PaymentResults
-    {
-        $this->validateParams(PaymentResults::class, $params);
-
-        $url = 'search/title' . "?" . http_build_query($params);
-
-        return $this->adapter->handle('post', $url,$params, PaymentResults::class);
-    }
-
-    public function capture(array $params): PaymentResults
-    {
-        $this->validateParams(PaymentResults::class, $params);
-
-        $url = 'search/title' . "?" . http_build_query($params);
-
-        return $this->adapter->handle('post', $url, $params,PaymentResults::class);
-    }
-
-    public function cancel(array $params): PaymentResults
-    {
-        $this->validateParams(PaymentResults::class, $params);
-
-        $url = 'search/title' . "?" . http_build_query($params);
-
-        return $this->adapter->handle('post', $url, $params,PaymentResults::class);
-    }
-
 
 }

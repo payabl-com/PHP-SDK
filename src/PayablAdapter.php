@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use PayableSdkPhp\Exceptions\PayablException;
 use PayableSdkPhp\Resources\AbstractResource;
+use PHPUnit\Exception;
 
 class PayablAdapter
 {
@@ -57,7 +58,7 @@ class PayablAdapter
 
         try {
             $res = new $responseDTOClass($data);
-        } catch (UnknownProperties $e) {
+        } catch (Exception $e) {
             $error = [
                 'reason' => 'Response validation: Unknown properties',
                 'code' => $e->getCode(),

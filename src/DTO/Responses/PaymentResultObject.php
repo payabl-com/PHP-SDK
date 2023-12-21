@@ -6,5 +6,5 @@ class PaymentResultObject
 {
     public string $transactionId;
 
-     // todo: add morechecks
+     // todo: add more checks
 }

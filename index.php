@@ -19,7 +19,7 @@ $paymentParams = [
     "exp_year"=> "2040",
     "cvc_code"=> "196",
 
-    "customerip"=> "127..1.1",
+    "customerip"=> "127.0.1.1",
     "email"=> "nikita.pushka@payable.com",
     "firstname"=> "Nikita",
     "lastname"=> "Pushkar",
@@ -33,6 +33,7 @@ $paymentParams = [
     "zip"=> "65197",
 
 ];
+
 $transaction = $payabl->payment()->payNow($paymentParams);
 dump($transaction);
 die();
