@@ -3,9 +3,10 @@
 namespace PayableSdkPhp\DTO\Requests;
 
 
-class PaymentRequest
+class RefundRequest
 {
     public string $cardHolder;
     public string $lastname;
+    public int $transactionid;
     public float $amount;
 }

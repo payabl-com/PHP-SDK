@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 class PaymentResourceTest extends TestCase
 {
     private $payabl;
-    
+
     protected function setUp(): void
     {
         $this->payabl = new Payabl();
@@ -42,7 +42,7 @@ class PaymentResourceTest extends TestCase
             "lastname"=> "Doe",
             "language"=> "de",
 
-            "company"=> "horns and hooves",
+            "company"=> "phpunit testing",
             "country"=> "DEU",
             "city"=> "Wiesbaden",
             "state"=> "HE",

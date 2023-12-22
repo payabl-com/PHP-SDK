@@ -31,11 +31,19 @@ $paymentParams = [
     "state"=> "HE",
     "street"=> "Wilhelm str 15",
     "zip"=> "65197",
-
 ];
 
 $transaction = $payabl->payment()->payNow($paymentParams);
 dump($transaction);
+sleep(1);
+$refundParams = [
+    "transactionid"=> $transaction->transactionid,
+    "amount"=> 2.7,
+    "currency"=> "EUR",
+];
+$refund = $payabl->refund()->refundNow($refundParams);
+dump("REFUND");
+dump($refund);
 die();
 
 

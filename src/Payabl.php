@@ -6,10 +6,12 @@ namespace PayableSdkPhp;
 use PayableSdkPhp\Exceptions\PayablException;
 use Dotenv\Dotenv;
 use PayableSdkPhp\Resources\Payabl\PaymentResource;
+use PayableSdkPhp\Resources\Payabl\RefundResource;
 
 class Payabl{
 
     private ?PaymentResource $payment = null ;
+    private ?RefundResource $refund = null ;
 
     public function __construct(){
         $dotenv = Dotenv::createImmutable(__DIR__ . "../..");
@@ -17,14 +19,20 @@ class Payabl{
     }
 
     public function payment(): PaymentResource {
-
-
         if (is_null($this->payment)){
             $this->payment = new PaymentResource();
         }
         return $this->payment;
     }
 
+    public function refund():RefundResource
+    {
+        if (is_null($this->refund)){
+            $this->refund = new RefundResource();
+        }
+        return $this->refund;
+    }
+    
     // todo: add more resources
 
 
