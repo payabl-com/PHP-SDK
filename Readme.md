@@ -9,13 +9,13 @@ last update 22.12.2023
 
 #### Installation: 
 ```bash 
-composer require nikitopush/pb_php_sdk
+composer require payabl/pb_php_sdk
 ```
 
 #### Usage Example: 
 ```php
 
-use PayableSdkPhp\Payabl;
+use PayablSdkPhp\Payabl;
 
 $payabl = new Payabl();
 $paymentParams = [

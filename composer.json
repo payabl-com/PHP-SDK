@@ -1,5 +1,5 @@
 {
-    "name": "payable/sdk-php",
+    "name": "payabl/sdk-php",
     "description": "PHP SDK for PayAbl",
     "type": "library",
     "require": {
@@ -11,7 +11,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "PayableSdkPhp\\": "src/"
+            "PayablSdkPhp\\": "src/"
         }
     },
     "require-dev": {

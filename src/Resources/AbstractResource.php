@@ -1,10 +1,10 @@
 <?php
 
-namespace PayableSdkPhp\Resources;
+namespace PayablSdkPhp\Resources;
 
 
-use PayableSdkPhp\Exceptions\PayablException;
-use PayableSdkPhp\PayablAdapter;
+use PayablSdkPhp\Exceptions\PayablException;
+use PayablSdkPhp\PayablAdapter;
 
 
 abstract class AbstractResource

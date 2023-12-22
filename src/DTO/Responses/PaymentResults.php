@@ -1,6 +1,6 @@
 <?php
 
-namespace PayableSdkPhp\DTO\Responses;
+namespace PayablSdkPhp\DTO\Responses;
 
 
 

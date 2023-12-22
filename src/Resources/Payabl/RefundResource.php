@@ -1,11 +1,11 @@
 <?php
 
-namespace PayableSdkPhp\Resources\Payabl;
+namespace PayablSdkPhp\Resources\Payabl;
 
-use PayableSdkPhp\DTO\Requests\RefundRequest;
-use PayableSdkPhp\DTO\Responses\PaymentResults;
-use PayableSdkPhp\DTO\Responses\RefundResults;
-use PayableSdkPhp\Resources\AbstractPayablResource;
+use PayablSdkPhp\DTO\Requests\RefundRequest;
+use PayablSdkPhp\DTO\Responses\PaymentResults;
+use PayablSdkPhp\DTO\Responses\RefundResults;
+use PayablSdkPhp\Resources\AbstractPayablResource;
 
 class RefundResource extends AbstractPayablResource
 {

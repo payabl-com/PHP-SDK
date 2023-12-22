@@ -1,12 +1,12 @@
 <?php
 
-namespace PayableSdkPhp;
+namespace PayablSdkPhp;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use PayableSdkPhp\Exceptions\PayablException;
-use PayableSdkPhp\Resources\AbstractResource;
+use PayablSdkPhp\Exceptions\PayablException;
+use PayablSdkPhp\Resources\AbstractResource;
 use PHPUnit\Exception;
 
 class PayablAdapter

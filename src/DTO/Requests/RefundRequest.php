@@ -1,6 +1,6 @@
 <?php
 
-namespace PayableSdkPhp\DTO\Requests;
+namespace PayablSdkPhp\DTO\Requests;
 
 
 class RefundRequest

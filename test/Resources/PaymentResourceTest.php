@@ -4,9 +4,9 @@ namespace Resources;
 
 
 
-use PayableSdkPhp\DTO\Responses\PaymentResults;
-use PayableSdkPhp\Exceptions\PayablException;
-use PayableSdkPhp\Payabl;
+use PayablSdkPhp\DTO\Responses\PaymentResults;
+use PayablSdkPhp\Exceptions\PayablException;
+use PayablSdkPhp\Payabl;
 use PHPUnit\Framework\TestCase;
 
 

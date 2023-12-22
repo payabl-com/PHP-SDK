@@ -1,10 +1,10 @@
 <?php
 
-namespace PayableSdkPhp\Resources\Payabl;
+namespace PayablSdkPhp\Resources\Payabl;
 
-use PayableSdkPhp\DTO\Requests\PaymentRequest;
-use PayableSdkPhp\DTO\Responses\PaymentResults;
-use PayableSdkPhp\Resources\AbstractPayablResource;
+use PayablSdkPhp\DTO\Requests\PaymentRequest;
+use PayablSdkPhp\DTO\Responses\PaymentResults;
+use PayablSdkPhp\Resources\AbstractPayablResource;
 
 class PaymentResource extends AbstractPayablResource
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace PayableSdkPhp;
+namespace PayablSdkPhp;
 
 
-use PayableSdkPhp\Exceptions\PayablException;
+use PayablSdkPhp\Exceptions\PayablException;
 use Dotenv\Dotenv;
-use PayableSdkPhp\Resources\Payabl\PaymentResource;
-use PayableSdkPhp\Resources\Payabl\RefundResource;
+use PayablSdkPhp\Resources\Payabl\PaymentResource;
+use PayablSdkPhp\Resources\Payabl\RefundResource;
 
 class Payabl{
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace PayableSdkPhp\Exceptions;
+namespace PayablSdkPhp\Exceptions;
 
 use Exception;
 

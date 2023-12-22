@@ -1,9 +1,9 @@
 <?php
 
 
-use PayableSdkPhp\Exceptions\PayablException;
-use PayableSdkPhp\Payabl;
-use PayableSdkPhp\Resources\Payabl\PaymentResource;
+use PayablSdkPhp\Exceptions\PayablException;
+use PayablSdkPhp\Payabl;
+use PayablSdkPhp\Resources\Payabl\PaymentResource;
 use PHPUnit\Framework\TestCase;
 
 class PayablTest extends TestCase
