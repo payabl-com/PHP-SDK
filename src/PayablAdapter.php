@@ -36,12 +36,13 @@ class PayablAdapter
 
     public function handle(string $httpMethod, string $url, array $options , string $responseDTOClass)
     {
+
+
         $error = [];
         try {
 
             $response = $this->$httpMethod($url, $options);
             $data = $response->toArray();
-
             if ($response->getStatusCode() !== 200) {
                 $error = $this->generateError($data);
             }

@@ -3,7 +3,7 @@
 ### API Reference
 https://docs.payabl.com/docs/getting-started
 
-#### Version 0.1 (BETA)
+#### Version (BETA)
 ##### Do not use in PROD
 last update 22.12.2023
 

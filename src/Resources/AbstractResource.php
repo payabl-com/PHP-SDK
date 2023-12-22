@@ -26,6 +26,10 @@ abstract class AbstractResource
             ];
             throw new PayablException($error);
         }
+    }
 
+    public function getArrayFromObject( $dtoClass):array
+    {
+        return get_object_vars($dtoClass);
     }
 }

@@ -3,15 +3,16 @@
 namespace PayablSdkPhp;
 
 
+use PayablSdkPhp\DTO\Responses\Transaction;
 use PayablSdkPhp\Exceptions\PayablException;
 use Dotenv\Dotenv;
 use PayablSdkPhp\Resources\Payabl\PaymentResource;
-use PayablSdkPhp\Resources\Payabl\RefundResource;
+use PayablSdkPhp\Resources\Payabl\TransactionResource;
 
 class Payabl{
 
     private ?PaymentResource $payment = null ;
-    private ?RefundResource $refund = null ;
+    private ?TransactionResource $transaction = null ;
 
     public function __construct(){
         $dotenv = Dotenv::createImmutable(__DIR__ . "../..");
@@ -25,12 +26,13 @@ class Payabl{
         return $this->payment;
     }
 
-    public function refund():RefundResource
+    public function transaction(Transaction $transaction):TransactionResource
     {
-        if (is_null($this->refund)){
-            $this->refund = new RefundResource();
+        if (is_null($this->transaction)){
+            $this->transaction = new TransactionResource($transaction);
+
         }
-        return $this->refund;
+        return $this->transaction;
     }
     
     // todo: add more resources

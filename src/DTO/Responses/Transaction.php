@@ -4,7 +4,7 @@ namespace PayablSdkPhp\DTO\Responses;
 
 
 
-class PaymentResults
+class Transaction
 {
     public int $transactionid = 0;
     public int $transid = 0;

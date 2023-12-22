@@ -3,7 +3,7 @@
 namespace PayablSdkPhp\DTO\Requests;
 
 
-class RefundRequest
+class TransactionRequest
 {
     public string $cardHolder;
     public string $lastname;
