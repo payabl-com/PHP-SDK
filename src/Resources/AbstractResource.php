@@ -7,7 +7,6 @@ use PayableSdkPhp\Exceptions\PayablException;
 use PayableSdkPhp\PayablAdapter;
 
 
-
 abstract class AbstractResource
 {
     protected PayablAdapter $adapter;
