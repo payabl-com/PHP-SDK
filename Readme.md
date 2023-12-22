@@ -43,13 +43,24 @@ $paymentParams = [
     "street"=> "Wilhelm str 15",
     "zip"=> "65000",
 ];
-
+// Authorization - Credit cards
 $transaction = $payabl->payment()->payNow($paymentParams);
 
+// refund
 $refundParams = [
     "transactionid"=> $transaction->transactionid,
     "amount"=> 2.7,
     "currency"=> "EUR",
 ];
-$refund = $payabl->refund()->refundNow($refundParams);
+$result = $payabl->transaction($transaction)->refund($refundParams);
+
+// Pre-Authorization and capture
+$transactionDelay = $payabl->payment()->payDelay($paymentParams);
+$result = $payabl->transaction($transaction)->capture();
+
+// Pre-Authorization and cancel
+$transactionDelay = $payabl->payment()->payDelay($paymentParams);
+$result = $payabl->transaction($transaction)->cancel();
+
+
 ```
