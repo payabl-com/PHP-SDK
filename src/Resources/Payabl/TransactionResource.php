@@ -6,14 +6,15 @@ use PayablSdkPhp\DTO\Requests\PaymentRequest;
 use PayablSdkPhp\DTO\Requests\TransactionRequest;
 
 use PayablSdkPhp\DTO\Responses\PaymentResults;
-use PayablSdkPhp\DTO\Responses\Transaction;
+use PayablSdkPhp\DTO\Responses\TransactionResponse;
+use PayablSdkPhp\DTO\Transaction;
 use PayablSdkPhp\Resources\AbstractPayablResource;
 
 class TransactionResource extends AbstractPayablResource
 {
-    public  Transaction $transaction ;
+    public  TransactionResponse $transaction ;
 
-    public function __construct(Transaction $transaction)
+    public function __construct(TransactionResponse $transaction)
     {
         parent::__construct(); // to init adapter
         $this->transaction = $transaction;
@@ -27,7 +28,11 @@ class TransactionResource extends AbstractPayablResource
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_refund';
 
-        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, Transaction::class);
+        $transactionResponse = $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, TransactionResponse::class);
+        $transaction = new Transaction();
+        $transaction->fullFillTransactionFromTransactionResponse($transactionResponse);
+        return $transaction;
+
     }
 
 
@@ -37,7 +42,10 @@ class TransactionResource extends AbstractPayablResource
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_capture';
 
-        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, Transaction::class);
+        $transactionResponse = $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, TransactionResponse::class);
+        $transaction = new Transaction();
+        $transaction->fullFillTransactionFromTransactionResponse($transactionResponse);
+        return $transaction;
     }
 
     public function cancel(): Transaction
@@ -46,10 +54,14 @@ class TransactionResource extends AbstractPayablResource
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_reversal';
 
-        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, Transaction::class);
+        $transactionResponse = $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, TransactionResponse::class);
+        $transaction = new Transaction();
+        $transaction->fullFillTransactionFromTransactionResponse($transactionResponse);
+        return $transaction;
+
     }
 
-    public function sendCFTByTransaction(array $params): Transaction
+    public function sendCFTByTransaction(array $params): TransactionResponse
     {
 //        $paramsFormObject  = $this->getArrayFromObject($this->transaction);
         $paramsFormObject['transactionid']  =  $this->transaction->transactionid;
@@ -57,13 +69,13 @@ class TransactionResource extends AbstractPayablResource
         $paramsFormObject['currency'] = $params['currency'];
         $paramsFormObject['payment_method'] =1;
         // todo: check Backend for CFT by Transaction
-
+        // todo: change return type..
 
 
         $this->validateParams(TransactionRequest::class, $paramsFormObject);
         $url = '/payment_cft';
 
-        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $paramsFormObject, Transaction::class);
+        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $paramsFormObject, TransactionResponse::class);
     }
 
 }
