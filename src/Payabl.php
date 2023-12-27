@@ -17,6 +17,8 @@ class Payabl{
     const TRANSACTION_TYPE_REFUND = "refund";
     const TRANSACTION_TYPE_RETRIEVAL_REQUEST = "retrieval_request";
     const TRANSACTION_TYPE_CFT = "cft";
+    const TRANSACTION_TYPE_PENDING = "pending";
+    const TRANSACTION_TYPE_FAILED = "failed";
 
     private ?PaymentResource $payment = null ;
     private ?TransactionResource $transaction = null ;
