@@ -9,32 +9,40 @@ use PayablSdkPhp\Resources\AbstractPayablResource;
 class PaymentResource extends AbstractPayablResource
 {
 
-    public function payNow(array $params): TransactionResponse
+    private array  $params  ;
+
+    public function __construct(array $params)
     {
-
-        $this->validateParams(PaymentRequest::class, $params);
-        $url = '/payment_authorize';
-
-        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, TransactionResponse::class);
+        $this->params = $params;
+        parent::__construct();
     }
 
-    public function sendCFT(array $params): TransactionResponse
+    public function payNow( ): TransactionResponse
+    {
+        dump("делаем payNow");
+        $this->validateParams(PaymentRequest::class, $this->params);
+        $url = '/payment_authorize';
+        dump("ВАЛИД");
+        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url,  $this->params, TransactionResponse::class);
+    }
+
+    public function sendCFT(): TransactionResponse
     {
         // todo: check Backend for CFT from scratch
-        $this->validateParams(PaymentRequest::class, $params);
+        $this->validateParams(PaymentRequest::class,  $this->params);
         $url = '/payment_cft';
 
-        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, TransactionResponse::class);
+        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url,  $this->params, TransactionResponse::class);
     }
 
 
-    public function initRecurrent(array $params): TransactionResponse
+    public function initRecurrent(): TransactionResponse
     {
 
-        $this->validateParams(PaymentRequest::class, $params);
+        $this->validateParams(PaymentRequest::class,  $this->params);
         $url = '/init';
         // for this method middle uri is diff.
-        return $this->adapter->handle('post',  $this->getApiRootPayment().$url, $params, TransactionResponse::class);
+        return $this->adapter->handle('post',  $this->getApiRootPayment().$url,  $this->params, TransactionResponse::class);
     }
 
 

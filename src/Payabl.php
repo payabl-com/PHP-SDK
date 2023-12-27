@@ -4,13 +4,15 @@ namespace PayablSdkPhp;
 
 
 use PayablSdkPhp\DTO\Responses\TransactionResponse;
+use PayablSdkPhp\DTO\Transaction;
 use PayablSdkPhp\Exceptions\PayablException;
 use Dotenv\Dotenv;
 use PayablSdkPhp\Resources\Payabl\ManagerResource;
 use PayablSdkPhp\Resources\Payabl\PaymentResource;
 use PayablSdkPhp\Resources\Payabl\TransactionResource;
 
-class Payabl{
+class Payabl
+{
 
     const TRANSACTION_TYPE_CAPTURE = "capture";
     const TRANSACTION_TYPE_CHARGEBACK = "chb";
@@ -23,26 +25,32 @@ class Payabl{
     const TRANSACTION_TYPE_BY_ORDER_ID = "orderid";
 
 
+    private ?PaymentResource $payment = null;
+    private ?TransactionResource $transaction = null;
+    private ?ManagerResource $manager = null;
+    private array $cardDetails = [];
 
-    private ?PaymentResource $payment = null ;
-    private ?TransactionResource $transaction = null ;
-    private ?ManagerResource $manager = null ;
+    private array $customerOrder = [];
+    private array $customerData = [];
+    private array $customerAddress = [];
 
-    public function __construct(){
+    public function __construct()
+    {
         $dotenv = Dotenv::createImmutable(__DIR__ . "../..");
         $dotenv->load();
     }
 
-    public function payment(): PaymentResource {
-        if (is_null($this->payment)){
-            $this->payment = new PaymentResource();
+    public function payment(): PaymentResource
+    {
+        if (is_null($this->payment)) {
+            $this->payment = new PaymentResource($this->getAllParams());
         }
         return $this->payment;
     }
 
-    public function transaction(TransactionResponse $transaction):TransactionResource
+    public function transaction(Transaction $transaction): TransactionResource
     {
-        if (is_null($this->transaction)){
+        if (is_null($this->transaction)) {
             $this->transaction = new TransactionResource($transaction);
 
         }
@@ -50,21 +58,84 @@ class Payabl{
     }
 
 
-    public function manager(): ManagerResource {
-        if (is_null($this->manager)){
+    public function manager(): ManagerResource
+    {
+        if (is_null($this->manager)) {
             $this->manager = new ManagerResource();
         }
         return $this->manager;
     }
 
 
+    public function setCardDetails(array $params): self
+    {
+        $this->cardDetails = [
+            'cardholder_name' => $params['cardholder_name'],
+            'ccn' => $params['ccn'],
+            'exp_month' => $params['exp_month'],
+            'exp_year' => $params['exp_year'],
+            'cvc_code' => $params['cvc_code'],
+        ];
+
+        return $this;
+    }
+
+    public function setCustomerData(array $params): self
+    {
+        $this->customerData = [
+            "customerip" => $params['customerip'],
+            "email" => $params['email'],
+            "firstname" => $params['firstname'],
+            "lastname" => $params['lastname'],
+            "language" => $params['language'],
+        ];
+
+        return $this;
+    }
+
+    public function setCustomerAddress(array $params): self
+    {
+        $this->customerAddress = [
+            "company" => $params['company'],
+            "country" => $params['country'],
+            "city" => $params['city'],
+            "state" => $params['state'],
+            "street" => $params['street'],
+            "zip" => $params['zip'],
+        ];
+
+        return $this;
+    }
+
+    public function setCustomerOrder(array $params): self
+    {
+        $this->customerOrder = [
+            "amount" => $params['amount'],
+            "orderid" => $params['orderid'],
+            "currency" => $params['currency'] ?? "EUR",
+            "payment_method" => $params['payment_method'] ?? "1",
+        ];
+
+        return $this;
+    }
+
+    public function getAllParams(): array
+    {
+        dump("array_merge") ;
+        $resultArr = array_merge($this->cardDetails, $this->customerOrder, $this->customerAddress, $this->customerData);
+        dump($resultArr);
+
+        return $resultArr;
+
+    }
+
     public function __call(string $name, array $params): void
     {
         throw new PayablException(
             [
                 'message' => 'The specified resource does not exist',
-                'code'    => 404,
-                'reason'  => 'Resource not found',
+                'code' => 404,
+                'reason' => 'Resource not found',
             ]
         );
     }

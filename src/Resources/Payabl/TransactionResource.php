@@ -12,9 +12,9 @@ use PayablSdkPhp\Resources\AbstractPayablResource;
 
 class TransactionResource extends AbstractPayablResource
 {
-    public  TransactionResponse $transaction ;
+    public  Transaction $transaction ;
 
-    public function __construct(TransactionResponse $transaction)
+    public function __construct(Transaction $transaction)
     {
         parent::__construct(); // to init adapter
         $this->transaction = $transaction;
