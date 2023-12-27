@@ -19,6 +19,10 @@ class Payabl{
     const TRANSACTION_TYPE_CFT = "cft";
     const TRANSACTION_TYPE_PENDING = "pending";
     const TRANSACTION_TYPE_FAILED = "failed";
+    const TRANSACTION_TYPE_BY_TRANSACTION = "tx";
+    const TRANSACTION_TYPE_BY_ORDER_ID = "orderid";
+
+
 
     private ?PaymentResource $payment = null ;
     private ?TransactionResource $transaction = null ;

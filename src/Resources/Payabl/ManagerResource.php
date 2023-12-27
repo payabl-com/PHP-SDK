@@ -36,4 +36,6 @@ class ManagerResource extends AbstractPayablResource
 
     }
 
+
+
 }

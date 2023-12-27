@@ -10,7 +10,7 @@ class ManagerResponse
 
     public function __construct(array $data)
     {
-        dump($data);
+
         $this->responseArray = $this->parseXmlFromArray($data);
     }
 
