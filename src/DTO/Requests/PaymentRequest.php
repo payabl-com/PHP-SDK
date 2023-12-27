@@ -16,9 +16,12 @@ class PaymentRequest
     public ?string $email = null;
     public ?string $customerip = null;
     public ?string $recurring_id = null;
+    public ?string  $token_id = null;
+    public ?string  $cof = null;
     public float $amount;
     public string $currency;
     public int $payment_method;
+
 
     public function __construct(array $params)
     {

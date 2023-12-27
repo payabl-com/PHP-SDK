@@ -17,6 +17,7 @@ class Transaction
     public int $payment_method = 0;
     public int $user_id = 0;
     public ?string $url_3ds = null;
+    public ?string $token_id = null;
 
     public function __construct(array $data)
     {
