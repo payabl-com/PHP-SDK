@@ -49,13 +49,21 @@ class TransactionResource extends AbstractPayablResource
         return $this->adapter->handle('post', $this->getApiRoot().$url, $params, Transaction::class);
     }
 
-    public function ctf(array $params): Transaction
+    public function sendCFTByTransaction(array $params): Transaction
     {
+//        $paramsFormObject  = $this->getArrayFromObject($this->transaction);
+        $paramsFormObject['transactionid']  =  $this->transaction->transactionid;
+        $paramsFormObject['amount'] = $params['amount'];
+        $paramsFormObject['currency'] = $params['currency'];
+        $paramsFormObject['payment_method'] =1;
+        // todo: check Backend for CFT by Transaction
 
-        $this->validateParams(TransactionRequest::class, $params);
+
+
+        $this->validateParams(TransactionRequest::class, $paramsFormObject);
         $url = '/payment_cft';
 
-        return $this->adapter->handle('post', $this->getApiRoot().$url, $params, Transaction::class);
+        return $this->adapter->handle('post', $this->getApiRoot().$url, $paramsFormObject, Transaction::class);
     }
 
 }

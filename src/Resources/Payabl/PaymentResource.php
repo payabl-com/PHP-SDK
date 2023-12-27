@@ -18,11 +18,11 @@ class PaymentResource extends AbstractPayablResource
         return $this->adapter->handle('post', $this->getApiRoot().$url, $params, Transaction::class);
     }
 
-    public function payDelay(array $params): Transaction
+    public function sendCFT(array $params): Transaction
     {
-
+        // todo: check Backend for CFT from scratch
         $this->validateParams(PaymentRequest::class, $params);
-        $url = '/payment_preauthorize';
+        $url = '/payment_cft';
 
         return $this->adapter->handle('post', $this->getApiRoot().$url, $params, Transaction::class);
     }

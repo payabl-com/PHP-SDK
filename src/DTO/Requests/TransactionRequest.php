@@ -5,8 +5,7 @@ namespace PayablSdkPhp\DTO\Requests;
 
 class TransactionRequest
 {
-    public string $cardHolder;
-    public string $lastname;
+
     public int $transactionid;
     public float $amount;
     public string $currency;

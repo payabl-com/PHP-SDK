@@ -6,15 +6,15 @@ namespace PayablSdkPhp\DTO\Requests;
 class PaymentRequest
 {
     public string $cardholder_name;
-    public string $firstname;
-    public string $lastname;
-    public string $street;
-    public string $zip;
-    public string $city;
-    public string $state;
-    public string $country;
-    public string $email;
-    public string $customerip;
+    public ?string $firstname = null;
+    public ?string $lastname = null;
+    public ?string $street = null;
+    public ?string $zip = null;
+    public ?string $city = null;
+    public ?string $state = null;
+    public ?string $country = null;
+    public ?string $email = null;
+    public ?string $customerip = null;
     public float $amount;
     public string $currency;
     public int $payment_method;
