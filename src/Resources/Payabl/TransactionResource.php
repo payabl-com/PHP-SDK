@@ -5,7 +5,7 @@ namespace PayablSdkPhp\Resources\Payabl;
 use PayablSdkPhp\DTO\Requests\PaymentRequest;
 use PayablSdkPhp\DTO\Requests\TransactionRequest;
 
-use PayablSdkPhp\DTO\Responses\RefundResults;
+use PayablSdkPhp\DTO\Responses\PaymentResults;
 use PayablSdkPhp\DTO\Responses\Transaction;
 use PayablSdkPhp\Resources\AbstractPayablResource;
 

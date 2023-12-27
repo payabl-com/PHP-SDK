@@ -42,7 +42,7 @@ class Payabl{
     {
         throw new PayablException(
             [
-                'message' => 'The specified resource (tickets) does not exist',
+                'message' => 'The specified resource does not exist',
                 'code'    => 404,
                 'reason'  => 'Resource not found',
             ]
