@@ -27,7 +27,7 @@ class TransactionResource extends AbstractPayablResource
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_refund';
 
-        return $this->adapter->handle('post', $this->getApiRoot().$url, $params, Transaction::class);
+        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, Transaction::class);
     }
 
 
@@ -37,7 +37,7 @@ class TransactionResource extends AbstractPayablResource
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_capture';
 
-        return $this->adapter->handle('post', $this->getApiRoot().$url, $params, Transaction::class);
+        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, Transaction::class);
     }
 
     public function cancel(): Transaction
@@ -46,7 +46,7 @@ class TransactionResource extends AbstractPayablResource
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_reversal';
 
-        return $this->adapter->handle('post', $this->getApiRoot().$url, $params, Transaction::class);
+        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $params, Transaction::class);
     }
 
     public function sendCFTByTransaction(array $params): Transaction
@@ -63,7 +63,7 @@ class TransactionResource extends AbstractPayablResource
         $this->validateParams(TransactionRequest::class, $paramsFormObject);
         $url = '/payment_cft';
 
-        return $this->adapter->handle('post', $this->getApiRoot().$url, $paramsFormObject, Transaction::class);
+        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $paramsFormObject, Transaction::class);
     }
 
 }
