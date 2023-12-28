@@ -2,10 +2,10 @@
 
 namespace PayablSdkPhp\Resources\Payabl;
 
-use PayablSdkPhp\DTO\Requests\PaymentRequest;
+
 use PayablSdkPhp\DTO\Requests\TransactionRequest;
 
-use PayablSdkPhp\DTO\Responses\PaymentResponse;
+
 use PayablSdkPhp\DTO\Responses\TransactionResponse;
 use PayablSdkPhp\DTO\Transaction;
 use PayablSdkPhp\Resources\AbstractPayablResource;
@@ -25,6 +25,8 @@ class TransactionResource extends AbstractPayablResource
     {
 
         $params['transactionid']  = (string) $this->transaction->id;
+        dump($params);
+
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_refund';
 
@@ -39,6 +41,8 @@ class TransactionResource extends AbstractPayablResource
     public function capture(): Transaction
     {
         $params  = $this->getArrayFromObject($this->transaction);
+        $params['transactionid']  = (string) $this->transaction->id;
+        dump($params);
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_capture';
 
@@ -51,6 +55,7 @@ class TransactionResource extends AbstractPayablResource
     public function cancel(): Transaction
     {
         $params  = $this->getArrayFromObject($this->transaction);
+        $params['transactionid']  = (string) $this->transaction->id;
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_reversal';
 

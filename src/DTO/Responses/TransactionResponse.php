@@ -8,7 +8,7 @@ use PayablSdkPhp\DTO\Transaction;
 class TransactionResponse
 {
     public int $transactionid = 0;
-    public int $transid = 0;
+
     public int $status = 0;
     public string $errormessage = "";
     public string $errmsg = "";
