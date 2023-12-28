@@ -4,7 +4,7 @@ namespace Resources;
 
 
 
-use PayablSdkPhp\DTO\Responses\PaymentResults;
+use PayablSdkPhp\DTO\Responses\PaymentResponse;
 use PayablSdkPhp\Exceptions\PayablException;
 use PayablSdkPhp\Payabl;
 use PHPUnit\Framework\TestCase;
@@ -52,7 +52,7 @@ class PaymentResourceTest extends TestCase
         ];;
         $response = $this->payabl->payment()->payNow($paymentParams);
 
-        $this->assertInstanceOf(PaymentResults::class, $response);
+        $this->assertInstanceOf(PaymentResponse::class, $response);
     }
 
 }

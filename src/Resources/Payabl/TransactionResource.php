@@ -5,7 +5,7 @@ namespace PayablSdkPhp\Resources\Payabl;
 use PayablSdkPhp\DTO\Requests\PaymentRequest;
 use PayablSdkPhp\DTO\Requests\TransactionRequest;
 
-use PayablSdkPhp\DTO\Responses\PaymentResults;
+use PayablSdkPhp\DTO\Responses\PaymentResponse;
 use PayablSdkPhp\DTO\Responses\TransactionResponse;
 use PayablSdkPhp\DTO\Transaction;
 use PayablSdkPhp\Resources\AbstractPayablResource;
@@ -24,7 +24,7 @@ class TransactionResource extends AbstractPayablResource
     public function refund(array $params): Transaction
     {
 
-        $params['transactionid']  = (string) $this->transaction->transactionid;
+        $params['transactionid']  = (string) $this->transaction->id;
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_refund';
 
@@ -61,10 +61,10 @@ class TransactionResource extends AbstractPayablResource
 
     }
 
-    public function sendCFTByTransaction(array $params): TransactionResponse
+    public function sendCFTByTransaction(array $params): Transaction
     {
 //        $paramsFormObject  = $this->getArrayFromObject($this->transaction);
-        $paramsFormObject['transactionid']  =  $this->transaction->transactionid;
+        $paramsFormObject['transactionid']  =  $this->transaction->id;
         $paramsFormObject['amount'] = $params['amount'];
         $paramsFormObject['currency'] = $params['currency'];
         $paramsFormObject['payment_method'] =1;
@@ -75,7 +75,11 @@ class TransactionResource extends AbstractPayablResource
         $this->validateParams(TransactionRequest::class, $paramsFormObject);
         $url = '/payment_cft';
 
-        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $paramsFormObject, TransactionResponse::class);
+        $transactionResponse = $this->adapter->handle('post', $this->getApiRootBackoffice().$url, $paramsFormObject, TransactionResponse::class);
+        $transaction = new Transaction();
+        $transaction->fullFillTransactionFromTransactionResponse($transactionResponse);
+        return $transaction;
+
     }
 
 }

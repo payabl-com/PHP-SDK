@@ -4,6 +4,7 @@ namespace PayablSdkPhp\Resources\Payabl;
 
 use PayablSdkPhp\DTO\Requests\PaymentRequest;
 use PayablSdkPhp\DTO\Responses\TransactionResponse;
+use PayablSdkPhp\DTO\Transaction;
 use PayablSdkPhp\Resources\AbstractPayablResource;
 
 class PaymentResource extends AbstractPayablResource
@@ -17,32 +18,43 @@ class PaymentResource extends AbstractPayablResource
         parent::__construct();
     }
 
-    public function payNow( ): TransactionResponse
+    public function payNow( ): Transaction
     {
 
         $this->validateParams(PaymentRequest::class, $this->params);
         $url = '/payment_authorize';
 
-        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url,  $this->params, TransactionResponse::class);
+        $transactionResponse =  $this->adapter->handle('post', $this->getApiRootBackoffice().$url,  $this->params, TransactionResponse::class);
+
+        $transaction = new Transaction();
+        $transaction->fullFillTransactionFromTransactionResponse($transactionResponse);
+
+        return $transaction;
     }
 
-    public function sendCFT(): TransactionResponse
+    public function sendCFT(): Transaction
     {
         // todo: check Backend for CFT from scratch
         $this->validateParams(PaymentRequest::class,  $this->params);
         $url = '/payment_cft';
 
-        return $this->adapter->handle('post', $this->getApiRootBackoffice().$url,  $this->params, TransactionResponse::class);
+        $transactionResponse =  $this->adapter->handle('post', $this->getApiRootBackoffice().$url,  $this->params, TransactionResponse::class);
+        $transaction = new Transaction();
+        $transaction->fullFillTransactionFromTransactionResponse($transactionResponse);
+        return $transaction;
     }
 
 
-    public function initRecurrent(): TransactionResponse
+    public function initRecurrent(): Transaction
     {
 
         $this->validateParams(PaymentRequest::class,  $this->params);
         $url = '/init';
         // for this method middle uri is diff.
-        return $this->adapter->handle('post',  $this->getApiRootPayment().$url,  $this->params, TransactionResponse::class);
+        $transactionResponse = $this->adapter->handle('post',  $this->getApiRootPayment().$url,  $this->params, TransactionResponse::class);
+        $transaction = new Transaction();
+        $transaction->fullFillTransactionFromTransactionResponse($transactionResponse);
+        return $transaction;
     }
 
 
