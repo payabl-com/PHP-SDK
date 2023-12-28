@@ -121,9 +121,8 @@ class Payabl
 
     public function getAllParams(): array
     {
-        dump("array_merge") ;
+
         $resultArr = array_merge($this->cardDetails, $this->customerOrder, $this->customerAddress, $this->customerData);
-        dump($resultArr);
 
         return $resultArr;
 

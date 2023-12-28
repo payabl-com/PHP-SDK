@@ -15,11 +15,11 @@ class ManagerResponse
     }
 
     private function parseXmlFromArray(array $array) {
-        $xmlKey = key($array); // Получаем ключ массива
-        $xmlString = $array[$xmlKey]; // Получаем XML-строку
+        $xmlKey = key($array);  
+        $xmlString = $array[$xmlKey];
 
-        // Удаление некорректной части и добавление корректного объявления XML
-        $xmlString = trim($xmlString); // Убираем лишние пробелы и переводы строк
+
+        $xmlString = trim($xmlString);
         $xmlString = str_replace('"1.0" encoding="ISO-8859-1"?>', '', $xmlString);
         $xmlString = '<?xml version="1.0" encoding="ISO-8859-1"?>' . $xmlString;
 

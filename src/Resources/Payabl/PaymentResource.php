@@ -19,10 +19,10 @@ class PaymentResource extends AbstractPayablResource
 
     public function payNow( ): TransactionResponse
     {
-        dump("делаем payNow");
+
         $this->validateParams(PaymentRequest::class, $this->params);
         $url = '/payment_authorize';
-        dump("ВАЛИД");
+
         return $this->adapter->handle('post', $this->getApiRootBackoffice().$url,  $this->params, TransactionResponse::class);
     }
 

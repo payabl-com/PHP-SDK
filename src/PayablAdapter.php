@@ -44,8 +44,6 @@ class PayablAdapter
             $response = $this->$httpMethod($url, $options);
 
             $data = $response->toArray();
-            dump("Ответ");
-            dump($data);
 
             if ($response->getStatusCode() !== 200) {
                 $error = $this->generateError($data);
@@ -87,9 +85,7 @@ class PayablAdapter
     {
 
         $options = $this->getArrayWithSignature($options);
-        dump("REQUEST");
-        dump($url);
-        dump($options);
+
         return $this->request('POST', $url, ['form_params' => $options]);
     }
 
