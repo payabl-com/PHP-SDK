@@ -15,7 +15,7 @@ class ManagerResponse
     }
 
     private function parseXmlFromArray(array $array) {
-        $xmlKey = key($array);  
+        $xmlKey = key($array);
         $xmlString = $array[$xmlKey];
 
 
