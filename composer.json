@@ -1,5 +1,5 @@
 {
-    "name": "payabl/sdk-php",
+    "name": "nikitospush/pb_php_sdk",
     "description": "PHP SDK for PayAbl",
     "type": "library",
     "require": {
