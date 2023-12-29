@@ -18,6 +18,9 @@ class PaymentRequest
     public ?string $recurring_id = null;
     public ?string  $token_id = null;
     public ?string  $cof = null;
+    public ?string $shop_url = null;
+    public ?string $notification_url = null;
+
     public float $amount;
     public string $currency;
     public int $payment_method;
@@ -26,19 +29,6 @@ class PaymentRequest
     public function __construct(array $params)
     {
 
-//        $this->amount = $params['amount'];
-//        $this->currency = $params['currency'];
-//        $this->payment_method = $params['payment_method'];
-//        $this->cardholder_name = $params['cardholder_name'];
-//        $this->customerip = $params['customerip'];
-//        $this->firstname = $params['firstname'];
-//        $this->lastname = $params['lastname'];
-//        $this->street = $params['street'];
-//        $this->zip = $params['zip'];
-//        $this->city = $params['city'];
-//        $this->state = $params['state'];
-//        $this->country = $params['country'];
-//        $this->recurring_id = $params['recurring_id'];
 
         foreach ($params as $key => $value) {
             if (property_exists($this, $key)) {

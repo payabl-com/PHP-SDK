@@ -33,6 +33,7 @@ class Payabl
     private array $customerOrder = [];
     private array $customerData = [];
     private array $customerAddress = [];
+    private array $merchantData = [];
 
     public function __construct()
     {
@@ -88,6 +89,10 @@ class Payabl
             "firstname" => $params['firstname'],
             "lastname" => $params['lastname'],
             "language" => $params['language'],
+            "salutation" => $params['salutation'],
+            "title" => $params['title'],
+            "gender" => $params['gender'],
+            "birthday" => $params['birthday'],
         ];
 
         return $this;
@@ -119,13 +124,20 @@ class Payabl
         return $this;
     }
 
+
+    public function setMerchantData(array $params): self
+    {
+        $this->merchantData = [
+            "shop_url" => $params['shop_url'] ?? null,
+            "notification_url" => $params['notification_url'] ?? null,
+        ];
+
+        return $this;
+    }
+
     public function getAllParams(): array
     {
-
-        $resultArr = array_merge($this->cardDetails, $this->customerOrder, $this->customerAddress, $this->customerData);
-
-        return $resultArr;
-
+        return array_merge($this->cardDetails, $this->customerOrder, $this->customerAddress, $this->customerData,  $this->merchantData, );
     }
 
     public function __call(string $name, array $params): void
