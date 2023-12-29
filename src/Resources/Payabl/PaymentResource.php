@@ -18,7 +18,7 @@ class PaymentResource extends AbstractPayablResource
         parent::__construct();
     }
 
-    public function payNow( ): Transaction
+    public function payNow(): Transaction
     {
 
         $this->validateParams(PaymentRequest::class, $this->params);

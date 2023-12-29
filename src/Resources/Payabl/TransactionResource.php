@@ -25,7 +25,6 @@ class TransactionResource extends AbstractPayablResource
     {
 
         $params['transactionid']  = (string) $this->transaction->id;
-        dump($params);
 
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_refund';
@@ -42,7 +41,7 @@ class TransactionResource extends AbstractPayablResource
     {
         $params  = $this->getArrayFromObject($this->transaction);
         $params['transactionid']  = (string) $this->transaction->id;
-        dump($params);
+
         $this->validateParams(TransactionRequest::class, $params);
         $url = '/payment_capture';
 
