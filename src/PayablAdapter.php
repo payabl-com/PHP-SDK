@@ -85,9 +85,7 @@ class PayablAdapter
     {
 
         $options = $this->getArrayWithSignature($options);
-        dump("REQ");
-        dump($url);
-        dump($options);
+
         return $this->request('POST', $url, ['form_params' => $options]);
     }
 
