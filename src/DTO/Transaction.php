@@ -8,8 +8,8 @@ use PayablSdkPhp\DTO\Responses\TransactionResponse;
 
 class Transaction
 {
-    public float $amount;
-    public string $currency;
+    public ?float $amount = null;
+    public ?string $currency = null;
     public ?\DateTime $issue_date = null;
     public ?\DateTime $booking_date = null;
     public ?\DateTime $transaction_date = null;
@@ -22,14 +22,21 @@ class Transaction
     public ?int $status = null;
     public ? string $errormessage = null;
     public ? string $errmsg = null;
+    public ? int $error_code = null;
     public ?float $price = null;
     public ?int $payment_method =  null;
     public ?int $user_id = null;
     public ?string $url_3ds = null;
     public ?string $token_id = null;
 
+    public ?string $session_id = null;
 
-    public function fullFillTransactionFromTransactionResponse(TransactionResponse $transactionResponse)
+
+    /**
+     * @param TransactionResponse $transactionResponse
+     * @return $this
+     */
+    public function fullFillTransactionFromTransactionResponse(TransactionResponse $transactionResponse):Transaction
     {
         $this->id = $transactionResponse->transactionid;
         $this->order_id = $transactionResponse->orderid;
@@ -42,10 +49,16 @@ class Transaction
         $this->user_id = $transactionResponse->user_id;
         $this->url_3ds = $transactionResponse->url_3ds;
         $this->token_id = $transactionResponse->token_id;
-
+        return $this;
     }
 
-    public function fullFillTransactionFromManagerResponseArray(array $managerResponseArray, array $params)
+    /**
+     * @param array $managerResponseArray
+     * @param array $params
+     * @return $this
+     * @throws \Exception
+     */
+    public function fullFillTransactionFromManagerResponseArray(array $managerResponseArray, array $params):Transaction
     {
 
         $this->id = (int)$managerResponseArray['transaction_id'];
@@ -60,5 +73,22 @@ class Transaction
             $this->booking_date = new DateTime($managerResponseArray['booking_date']);
         if (isset($managerResponseArray['transaction_date']))
             $this->transaction_date = new DateTime($managerResponseArray['transaction_date']);
+        return $this;
     }
+
+    /**
+     * @param TransactionResponse $transactionResponse
+     * @return $this
+     */
+    public function fullFillTransactionBySession(TransactionResponse $transactionResponse):Transaction
+    {
+        $this->id = $transactionResponse->transactionid;
+        $this->order_id = $transactionResponse->orderid;
+        $this->session_id  = $transactionResponse->session_id;
+        $this->error_code = $transactionResponse->errorcode;
+        return $this;
+    }
+
+
+
 }

@@ -89,10 +89,10 @@ class Payabl
             "firstname" => $params['firstname'],
             "lastname" => $params['lastname'],
             "language" => $params['language'],
-            "salutation" => $params['salutation'],
-            "title" => $params['title'],
-            "gender" => $params['gender'],
-            "birthday" => $params['birthday'],
+            "salutation" => $params['salutation'] ?? "",
+            "title" => $params['title'] ?? "",
+            "gender" => $params['gender'] ?? "",
+            "birthday" => $params['birthday'] ?? "",
         ];
 
         return $this;
