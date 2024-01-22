@@ -71,7 +71,7 @@ class TransactionResource extends AbstractPayablResource
         $paramsFormObject['transactionid']  =  $this->transaction->id;
         $paramsFormObject['amount'] = $params['amount'];
         $paramsFormObject['currency'] = $params['currency'];
-        $paramsFormObject['payment_method'] =1;
+        $paramsFormObject['payment_method'] = 1;
         // todo: check Backend for CFT by Transaction
         // todo: change return type..
 

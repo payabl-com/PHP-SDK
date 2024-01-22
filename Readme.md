@@ -3,18 +3,17 @@
 ### API Reference
 https://docs.payabl.com/docs/getting-started
 
-#### Version (BETA)
-##### Do not use in PROD
-last update 22.12.2023
+#### Version
+0.0.2
 
-#### Installation: 
+## Installation
 ```bash 
 composer require payabl/pb_php_sdk
 ```
 
-#### Usage Example: 
-```php
+## Usage 
 
+```PHP
 use PayablSdkPhp\Payabl;
 $payabl = new Payabl();
 $cardDetails = [
@@ -51,22 +50,41 @@ $payabl->setCustomerAddress($customerAddress);
 $payabl->setCustomerOrder($customerOrder);
 
 $transaction = $payabl->payment()->payNow();
+```
 
-// refund
+
+### Refund
+```php
 $refundParams = [
     "transactionid"=> $transaction->transactionid,
     "amount"=> 2.7,
     "currency"=> "EUR",
 ];
 $result = $payabl->transaction($transaction)->refund($refundParams);
+```
 
-// Pre-Authorization and capture
+### Pre-Authorization and capture
+```php
 $transactionDelay = $payabl->payment()->payDelay($paymentParams);
 $result = $payabl->transaction($transaction)->capture();
+```
 
-// Pre-Authorization and cancel
+### Pre-Authorization and cancel
+```php
+
 $transactionDelay = $payabl->payment()->payDelay($paymentParams);
 $result = $payabl->transaction($transaction)->cancel();
+```
 
 
+### get Session ID
+```PHP
+... 
+$merchantData = [
+    "shopUrl"=>"https://127.0.0.1",
+    "notificationUrl"=>"https://127.0.0.1",
+];
+
+$payabl->setMerchantData($merchantData);
+$transaction = $payabl->payment()->getPaymentWidgetSession();
 ```

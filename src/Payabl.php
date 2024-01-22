@@ -84,7 +84,7 @@ class Payabl
     public function setCustomerData(array $params): self
     {
         $this->customerData = [
-            "customerip" => $params['customerip'],
+            "customerip" => $params['customer_ip'],
             "email" => $params['email'],
             "firstname" => $params['firstname'],
             "lastname" => $params['lastname'],
@@ -116,7 +116,7 @@ class Payabl
     {
         $this->customerOrder = [
             "amount" => $params['amount'],
-            "orderid" => $params['orderid'],
+            "orderid" => $params['order_id'],
             "currency" => $params['currency'] ?? "EUR",
             "payment_method" => $params['payment_method'] ?? "1",
         ];
