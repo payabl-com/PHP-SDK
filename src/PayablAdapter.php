@@ -43,12 +43,13 @@ class PayablAdapter
             $data = $response->toArray();
 
             if ($response->getStatusCode() !== 200) {
-                $error = $this->generateError($data);
+                $error = $this->generateError($data, $response->getStatusCode());
             }
         } catch (ServerException $e) {
+
             $response = $e->getResponse();
             $data = json_decode((string)$response->getBody(), true);
-            $error = $this->generateError($data);
+            $error = $this->generateError($data, $response->getStatusCode());
         }
 
 
@@ -68,7 +69,7 @@ class PayablAdapter
             ];
             throw new PayablException($error);
         }
-        dump($res);
+
         return $res;
 
     }

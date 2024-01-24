@@ -119,6 +119,7 @@ class Payabl
             "orderid" => $params['order_id'],
             "currency" => $params['currency'] ?? "EUR",
             "payment_method" => $params['payment_method'] ?? "1",
+            "notification_url" => $params['notification_url'] ?? "",
         ];
 
         return $this;
