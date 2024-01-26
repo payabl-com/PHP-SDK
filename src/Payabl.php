@@ -93,8 +93,42 @@ class Payabl
             "title" => $params['title'] ?? "",
             "gender" => $params['gender'] ?? "",
             "birthday" => $params['birthday'] ?? "",
+            "phone" => $params['phone'] ?? "",
+            "fax" => $params['fax'] ?? "",
+            "mobile" => $params['mobile'] ?? "",
+            "custom1" => $params['custom1'] ?? "",
+            "custom2" => $params['custom2'] ?? "",
+            "custom3" => $params['custom3'] ?? "",
         ];
+        return $this;
+    }
 
+    public function setShippingData(array $params):self
+    {
+        $this->customerAddress = [
+            "shipping_state" => $params['shipping_state'] ?? "",
+            "shipping_city" => $params['shipping_city'] ?? "",
+            "shipping_address_line_1" => $params['shipping_address_line_1'] ?? "",
+            "shipping_address_line_2" => $params['shipping_address_line_2'] ?? "",
+            "shipping_postal_code" => $params['shipping_postal_code'] ?? "",
+            "shipping_first_name" => $params['shipping_first_name'] ?? "",
+            "shipping_last_name" => $params['shipping_last_name'] ?? ""
+        ];
+        return $this;
+    }
+
+    public function setBillingData(array $params):self
+    {
+        $this->customerAddress = [
+            "billing_country_code" => $params['billing_country_code'] ?? "",
+            "billing_state" => $params['billing_state'] ?? "",
+            "billing_city" => $params['billing_city'] ?? "",
+            "billing_address_line_1" => $params['billing_address_line_1'] ?? "",
+            "billing_address_line_2" => $params['billing_address_line_2'] ?? "",
+            "billing_postal_code" => $params['billing_postal_code'] ?? "",
+            "billing_first_name" => $params['billing_first_name'] ?? "",
+            "billing_last_name" => $params['billing_last_name'] ?? ""
+        ];
         return $this;
     }
 
@@ -102,13 +136,14 @@ class Payabl
     {
         $this->customerAddress = [
             "company" => $params['company'],
-            "country" => $params['country'],
-            "city" => $params['city'],
-            "state" => $params['state'],
+            "country" => $params['country'] ?? "",
+            "city" => $params['city'] ?? "",
+            "state" => $params['state'] ?? "",
             "street" => $params['street'],
+            "house" => $params['house'] ?? "",
             "zip" => $params['zip'],
+            "postbox" => $params['postbox'] ?? "",
         ];
-
         return $this;
     }
 
@@ -121,7 +156,6 @@ class Payabl
             "payment_method" => $params['payment_method'] ?? "1",
             "notification_url" => $params['notification_url'] ?? "",
         ];
-
         return $this;
     }
 
@@ -131,8 +165,9 @@ class Payabl
         $this->merchantData = [
             "shop_url" => $params['shop_url'] ?? null,
             "notification_url" => $params['notification_url'] ?? null,
+            "language" => $params['language'] ?? "en",
+            "external_id" => $params['external_id'] ?? "",
         ];
-
         return $this;
     }
 

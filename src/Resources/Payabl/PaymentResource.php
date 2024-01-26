@@ -44,7 +44,6 @@ class PaymentResource extends AbstractPayablResource
         return $transaction;
     }
 
-
     public function initRecurrent(): Transaction
     {
 
@@ -58,12 +57,10 @@ class PaymentResource extends AbstractPayablResource
     }
 
 
-
     public function getPaymentWidgetSession(): Transaction
     {
 
         $this->validateParams(PaymentRequest::class,  $this->params);
-        dump("valid");
         $url = '/get_payment_widget_session';
         // for this method middle uri is diff.
         $transactionResponse = $this->adapter->handle('post',  $this->getApiRootPayment().$url,  $this->params, TransactionResponse::class);

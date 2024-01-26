@@ -48,6 +48,9 @@ $payabl->setCardDetails($cardDetails);
 $payabl->setCustomerData($customerData );
 $payabl->setCustomerAddress($customerAddress);
 $payabl->setCustomerOrder($customerOrder);
+$payabl->setMerchantData($merchantData);
+$payabl->setShippingData($shippingData);
+$payabl->setBillingData($billingData);
 
 $transaction = $payabl->payment()->payNow();
 ```
