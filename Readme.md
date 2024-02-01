@@ -22,6 +22,7 @@ $cardDetails = [
     "exp_month" => "12",
     "exp_year" => "2040",
     "cvc_code" => "196",
+    "payment_method" => 1,
 ];
 $customerData = [
     "customerip" => "127.0.1.1",
@@ -42,7 +43,7 @@ $customerOrder = [
     "amount" => 3.14,
     "orderid" => "123",
     "currency" => "EUR",
-    "payment_method" => 1,
+
 ];
 $payabl->setCardDetails($cardDetails);
 $payabl->setCustomerData($customerData );
