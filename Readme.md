@@ -11,7 +11,7 @@ https://docs.payabl.com/docs/getting-started
 composer require payabl/pb_php_sdk
 ```
 
-## Usage 
+## Usage
 
 ```PHP
 use PayablSdkPhp\Payabl;
@@ -52,35 +52,39 @@ $payabl->setMerchantData($merchantData);
 $payabl->setShippingData($shippingData);
 $payabl->setBillingData($billingData);
 
-$transaction = $payabl->payment()->payNow();
+$transaction = $payabl->getPaymentResource()->payNow();
 ```
 
 
 ### Refund
+
 ```php
 $refundParams = [
     "transactionid"=> $transaction->transactionid,
     "amount"=> 2.7,
     "currency"=> "EUR",
 ];
-$result = $payabl->transaction($transaction)->refund($refundParams);
+$result = $payabl->getTransactionResource($transaction)->refund($refundParams);
 ```
 
 ### Pre-Authorization and capture
+
 ```php
-$transactionDelay = $payabl->payment()->payDelay($paymentParams);
-$result = $payabl->transaction($transaction)->capture();
+$transactionDelay = $payabl->getPaymentResource()->payDelay($paymentParams);
+$result = $payabl->getTransactionResource($transaction)->capture();
 ```
 
 ### Pre-Authorization and cancel
+
 ```php
 
-$transactionDelay = $payabl->payment()->payDelay($paymentParams);
-$result = $payabl->transaction($transaction)->cancel();
+$transactionDelay = $payabl->getPaymentResource()->payDelay($paymentParams);
+$result = $payabl->getTransactionResource($transaction)->cancel();
 ```
 
 
 ### get Session ID
+
 ```PHP
 ... 
 $merchantData = [
@@ -89,5 +93,5 @@ $merchantData = [
 ];
 
 $payabl->setMerchantData($merchantData);
-$transaction = $payabl->payment()->getPaymentWidgetSession();
+$transaction = $payabl->getPaymentResource()->getPaymentWidgetSession();
 ```

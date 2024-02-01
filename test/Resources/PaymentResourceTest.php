@@ -50,7 +50,7 @@ class PaymentResourceTest extends TestCase
             "zip"=> "65197",
 
         ];;
-        $response = $this->payabl->payment()->payNow($paymentParams);
+        $response = $this->payabl->getPaymentResource()->payNow($paymentParams);
 
         $this->assertInstanceOf(PaymentResponse::class, $response);
     }

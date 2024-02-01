@@ -18,7 +18,7 @@ class PayablTest extends TestCase
     public function testSuccessPaymentResource()
     {
         $payab  = new Payabl();
-        $resource = $payab->payment();
+        $resource = $payab->getPaymentResource();
         $this->assertInstanceOf(PaymentResource::class, $resource);
     }
 

@@ -25,17 +25,19 @@ class TransactionResponse
 
     public function __construct(array $data)
     {
-        $this->transactionid = $data['transactionid'] ?? 0;
+        $this->transactionid =(int) $data['transactionid'] ?? 0;
         $this->status = $data['status'] ?? 0;
         $this->errormessage = $data['errormessage'] ?? "";
         $this->errmsg = $data['errmsg'] ?? "";
         $this->errorcode = $data['errorcode'] ?? 0;
-        $this->amount = $data['amount'] ?? 0.0;
-        $this->price = $data['price'] ?? 0;
+        $this->amount = (float) $data['amount'] ?? 0.0;
+        $this->price = (float) $data['price'] ?? 0;
         $this->currency = $data['currency'] ?? "";
-        $this->orderid = $data['orderid'] ?? 0;
-        $this->payment_method = $data['payment_method'] ?? 0;
-        $this->user_id = $data['user_id'] ?? 0;
+        $this->orderid = (int) $data['orderid'] ?? 0;
+        if (isset($data['payment_method']))
+            $this->payment_method = (int) $data['payment_method'] ?? 0;
+        if (isset($data['user_id']))
+            $this->user_id =(int) $data['user_id'] ?? 0;
         $this->url_3ds = $data['url_3ds'] ?? null;
         $this->token_id = $data['token_id'] ?? null;
         $this->session_id = $data['session_id'] ?? null;

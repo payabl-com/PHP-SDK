@@ -25,9 +25,10 @@ class Payabl
     const TRANSACTION_TYPE_BY_ORDER_ID = "orderid";
 
 
-    private ?PaymentResource $payment = null;
-    private ?TransactionResource $transaction = null;
+    private ?PaymentResource $paymentResource = null;
+    private ?TransactionResource $transactionResource = null;
     private ?ManagerResource $manager = null;
+
     private array $cardDetails = [];
 
     private array $customerOrder = [];
@@ -41,25 +42,32 @@ class Payabl
         $dotenv->load();
     }
 
-    public function payment(): PaymentResource
+    /**
+     * @return PaymentResource
+     */
+    public function getPaymentResource(): PaymentResource
     {
-        if (is_null($this->payment)) {
-            $this->payment = new PaymentResource($this->getAllParams());
+        if (is_null($this->paymentResource)) {
+            $this->paymentResource = new PaymentResource($this->getAllParams());
         }
-        return $this->payment;
+        return $this->paymentResource;
     }
 
-    public function transaction(Transaction $transaction): TransactionResource
+    /**
+     * @param Transaction $transaction
+     * @return TransactionResource
+     */
+    public function getTransactionResource(Transaction $transaction): TransactionResource
     {
-        if (is_null($this->transaction)) {
-            $this->transaction = new TransactionResource($transaction);
-
+        if (is_null($this->transactionResource)) {
+            $this->transactionResource = new TransactionResource($transaction);
+            $this->transactionResource->setCardDetails($this->cardDetails);
         }
-        return $this->transaction;
+        return $this->transactionResource;
     }
 
 
-    public function manager(): ManagerResource
+    public function getManagerResource(): ManagerResource
     {
         if (is_null($this->manager)) {
             $this->manager = new ManagerResource();
@@ -76,6 +84,7 @@ class Payabl
             'exp_month' => $params['exp_month'],
             'exp_year' => $params['exp_year'],
             'cvc_code' => $params['cvc_code'],
+            'payment_method' => $params['payment_method'],
         ];
 
         return $this;
@@ -153,7 +162,6 @@ class Payabl
             "amount" => $params['amount'],
             "orderid" => $params['order_id'],
             "currency" => $params['currency'] ?? "EUR",
-            "payment_method" => $params['payment_method'] ?? "1",
             "notification_url" => $params['notification_url'] ?? "",
         ];
         return $this;
@@ -171,6 +179,9 @@ class Payabl
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getAllParams(): array
     {
         return array_merge($this->cardDetails, $this->customerOrder, $this->customerAddress, $this->customerData,  $this->merchantData, );
