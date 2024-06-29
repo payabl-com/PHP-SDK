@@ -1,5 +1,5 @@
 {
-    "name": "payabl/php_sdk",
+    "name": "payabl-com/php_sdk",
     "description": "PHP SDK for PayAbl",
     "type": "library",
     "require": {
