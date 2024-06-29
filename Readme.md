@@ -4,11 +4,11 @@
 https://docs.payabl.com/docs/getting-started
 
 #### Version
-0.0.2
+0.0.10
 
 ## Installation
 ```bash 
-composer require payabl/pb_php_sdk
+composer require payabl-com/php_sdk
 ```
 
 ## Usage
@@ -34,10 +34,10 @@ $customerData = [
 $customerAddress = [
     "company" => "test SDK",
     "country" => "DEU",
-    "city" => "Wiesbaden",
+    "city" => "Frankfurt am Main",
     "state" => "HE",
     "street" => "Wilhelm str 15",
-    "zip" => "65197",
+    "zip" => "60311",
 ];
 $customerOrder = [
     "amount" => 3.14,
