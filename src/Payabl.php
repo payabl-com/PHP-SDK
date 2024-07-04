@@ -84,7 +84,7 @@ class Payabl
             'exp_month' => $params['exp_month'],
             'exp_year' => $params['exp_year'],
             'cvc_code' => $params['cvc_code'],
-            'payment_method' => $params['payment_method'],
+            'payment_method' => $params['payment_method'] ?? 1,
         ];
 
         return $this;
@@ -93,7 +93,7 @@ class Payabl
     public function setCustomerData(array $params): self
     {
         $this->customerData = [
-            "customerip" => $params['customer_ip'],
+            "customerip" => $params['customer_ip']??"",
             "email" => $params['email'],
             "firstname" => $params['firstname'],
             "lastname" => $params['lastname'],
@@ -160,9 +160,11 @@ class Payabl
     {
         $this->customerOrder = [
             "amount" => $params['amount'],
-            "orderid" => $params['order_id'],
+            "orderid" => $params['order_id']??"",
             "currency" => $params['currency'] ?? "EUR",
             "notification_url" => $params['notification_url'] ?? "",
+            "payment_method" => $params['payment_method'] ?? 1,
+            "url_return" => $params['url_return'] ?? "",
         ];
         return $this;
     }
@@ -178,6 +180,7 @@ class Payabl
         ];
         return $this;
     }
+
 
     /**
      * @return array

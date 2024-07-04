@@ -3,6 +3,7 @@
 namespace PayablSdkPhp\Resources\Payabl;
 
 use PayablSdkPhp\DTO\Requests\PaymentRequest;
+use PayablSdkPhp\DTO\Responses\PaymentPageResponse;
 use PayablSdkPhp\DTO\Responses\TransactionResponse;
 use PayablSdkPhp\DTO\Transaction;
 use PayablSdkPhp\Resources\AbstractPayablResource;
@@ -46,7 +47,6 @@ class PaymentResource extends AbstractPayablResource
 
     public function initRecurrent(): Transaction
     {
-
         $this->validateParams(PaymentRequest::class,  $this->params);
         $url = '/init';
         // for this method middle uri is diff.
@@ -70,6 +70,17 @@ class PaymentResource extends AbstractPayablResource
         return $transaction;
     }
 
+    public function initialHostedPaymentPage():Transaction
+    {
+        $this->validateParams(PaymentRequest::class,  $this->params);
+        $url = '/init';
+        $urlRequest = $this->getApiRootPayment().$url;
+        $transactionResponse = $this->adapter->handle('post',  $urlRequest,  $this->params, TransactionResponse::class);
+        $transaction = new Transaction();
+        $transaction->fullFillTransactionByPaymentPage( $transactionResponse);
+        return $transaction;
+
+    }
 
 
 }

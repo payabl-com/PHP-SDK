@@ -84,6 +84,7 @@ class PayablAdapter
 
 
         $options = $this->getArrayWithSignature($options);
+        dump($options);
 
 
         return $this->request('POST', $url, ['form_params' => $options]);
@@ -94,9 +95,7 @@ class PayablAdapter
         $method = strtolower($method);
         try {
             $response = $this->client->$method($uri, $options);
-
         } catch (ClientException $e) {
-
             $response = $e->getResponse();
         }
 
