@@ -23,19 +23,15 @@ class PaymentRequest
 
     public float $amount;
     public string $currency;
-    public int $payment_method;
+    public string $payment_method;
 
 
     public function __construct(array $params)
     {
-
-
         foreach ($params as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->$key = $value;
             }
         }
-
-        // todo add checks
     }
 }

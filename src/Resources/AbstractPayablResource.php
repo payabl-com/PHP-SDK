@@ -4,11 +4,10 @@ namespace PayablSdkPhp\Resources;
 
 abstract class AbstractPayablResource  extends AbstractResource
 {
-    const PAYABL_REST_BACKOFFICE_API = '/powercash21-3-2/backoffice';
-    const PAYABL_REST_PAYMENT_API = '/powercash21-3-2/payment';
 
-//    const PAYABL_REST_BACKOFFICE_API = '/pay/backoffice';
-//    const PAYABL_REST_PAYMENT_API = '/pay/payment';
+
+    const PAYABL_REST_BACKOFFICE_API = '/pay/backoffice';
+    const PAYABL_REST_PAYMENT_API = '/pay/payment';
 
     public function getApiRootBackoffice(): string
     {

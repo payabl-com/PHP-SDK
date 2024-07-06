@@ -5,7 +5,7 @@ namespace PayablSdkPhp\DTO\Requests;
 
 class ManagerRequest
 {
-    public string $type; //capture, chb (chargebacks), refund, retrieval_request, cft
+    public string $type;
     public string $start_date ;
     public string $end_date ;
 
