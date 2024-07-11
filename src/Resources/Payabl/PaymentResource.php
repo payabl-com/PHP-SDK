@@ -3,7 +3,6 @@
 namespace PayablSdkPhp\Resources\Payabl;
 
 use PayablSdkPhp\DTO\Requests\PaymentRequest;
-use PayablSdkPhp\DTO\Responses\PaymentPageResponse;
 use PayablSdkPhp\DTO\Responses\TransactionResponse;
 use PayablSdkPhp\DTO\Transaction;
 use PayablSdkPhp\Resources\AbstractPayablResource;

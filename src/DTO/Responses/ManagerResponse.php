@@ -23,11 +23,10 @@ class ManagerResponse
         $xmlString = str_replace('"1.0" encoding="ISO-8859-1"?>', '', $xmlString);
         $xmlString = '<?xml version="1.0" encoding="ISO-8859-1"?>' . $xmlString;
 
-        // Загрузка и парсинг XML
+
         $xml = simplexml_load_string($xmlString);
         if ($xml === false) {
-            // Обработка ошибки парсинга XML
-            return 'Ошибка при загрузке XML';
+            return 'Error while loadig xml';
         }
 
         $result = [];

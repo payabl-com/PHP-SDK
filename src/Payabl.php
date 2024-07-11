@@ -6,7 +6,6 @@ namespace PayablSdkPhp;
 use PayablSdkPhp\DTO\Responses\TransactionResponse;
 use PayablSdkPhp\DTO\Transaction;
 use PayablSdkPhp\Exceptions\PayablException;
-use Dotenv\Dotenv;
 use PayablSdkPhp\Resources\Payabl\ManagerResource;
 use PayablSdkPhp\Resources\Payabl\PaymentResource;
 use PayablSdkPhp\Resources\Payabl\TransactionResource;
@@ -35,11 +34,13 @@ class Payabl
     private array $customerData = [];
     private array $customerAddress = [];
     private array $merchantData = [];
+    private string $secret;
+    private string $env;
 
-    public function __construct()
+    public function __construct(string $secret, string $env = 'sandbox')
     {
-        $dotenv = Dotenv::createImmutable(__DIR__ . "../..");
-        $dotenv->load();
+        $this->secret = $secret;
+        $this->env = $env;
     }
 
     /**
