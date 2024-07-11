@@ -10,11 +10,12 @@ use PayablSdkPhp\Resources\AbstractPayablResource;
 class PaymentResource extends AbstractPayablResource
 {
 
-    private array  $params  ;
+    public array  $params  ;
 
     public function __construct(array $params)
     {
         $this->params = $params;
+
         parent::__construct();
     }
 

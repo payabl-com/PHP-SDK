@@ -11,24 +11,23 @@ use PHPUnit\Exception;
 
 class PayablAdapter
 {
-    const PAYABL_API_VERSION = 'v1.0';
     private Client $client;
-    private string $secret;
     private string $merchantId;
+    private string $secret;
 
     public function __construct(?AbstractResource $resource = null)
     {
-        $baseUrl = $_ENV['PAYABL_BASE_URL'];
-        $this->secret = $_ENV['PAYABL_SECRET'];
-        $this->merchantId = $_ENV['PAYABL_MERCHANT_ID'];
+      
+        $this->merchantId = $resource->params['merchantId'];
+        $this->secret = $resource->params['secret'];
         $this->client = new Client(
             [
-                'base_uri' => $baseUrl . "/",
+                'base_uri' => $resource->params["baseUrl"] . "/",
                 'headers' => [
-                    'User-Agent' => 'Payabl PHP-SDK v.0.1',
+                    'User-Agent' => 'Payabl PHP-SDK',
                     'Accept' => 'text/plain',
                     'Content-Type' => 'application/json'
-                ],
+                ]
             ]
         );
     }
@@ -36,7 +35,6 @@ class PayablAdapter
 
     public function handle(string $httpMethod, string $url, array $options , string $responseDTOClass)
     {
-
         $error = [];
         try {
             $response = $this->$httpMethod($url, $options);
@@ -81,12 +79,7 @@ class PayablAdapter
 
     public function post(string $url,  array $options = []): PayablResponse
     {
-
-
         $options = $this->getArrayWithSignature($options);
-        dump($options);
-
-
         return $this->request('POST', $url, ['form_params' => $options]);
     }
 

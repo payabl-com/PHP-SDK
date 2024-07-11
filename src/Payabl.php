@@ -34,13 +34,27 @@ class Payabl
     private array $customerData = [];
     private array $customerAddress = [];
     private array $merchantData = [];
+    private array $config = [];
+    private string $merchantId;
     private string $secret;
     private string $env;
+    private string $merchandId;
+    private string $baseUrl;
 
-    public function __construct(string $secret, string $env = 'sandbox')
+    public function __construct(string $merchandId, string $secret, string $env = 'sandbox')
     {
         $this->secret = $secret;
         $this->env = $env;
+        $this->merchandId = $merchandId;
+
+        if ($this->env === "live"){
+            $this->baseUrl = "https://payabl.com";
+        } else {
+            $this->baseUrl = "https://sandbox.payabl.com";
+        }
+        $this->config['secret'] = $this->secret;
+        $this->config['merchantId'] = $this->merchandId;
+        $this->config['baseUrl'] =  $this->baseUrl ;
     }
 
     /**
@@ -188,7 +202,14 @@ class Payabl
      */
     public function getAllParams(): array
     {
-        return array_merge($this->cardDetails, $this->customerOrder, $this->customerAddress, $this->customerData,  $this->merchantData, );
+        return array_merge(
+            $this->cardDetails,
+            $this->customerOrder,
+            $this->customerAddress,
+            $this->customerData,
+            $this->merchantData,
+            $this->config,
+        );
     }
 
     public function __call(string $name, array $params): void
