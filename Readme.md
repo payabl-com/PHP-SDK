@@ -3,8 +3,6 @@
 ### API Reference
 https://docs.payabl.com/docs/getting-started
 
-#### Version
-0.0.10
 
 ## Installation
 ```bash 
