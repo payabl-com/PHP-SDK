@@ -35,26 +35,12 @@ class Payabl
     private array $customerAddress = [];
     private array $merchantData = [];
     private array $config = [];
-    private string $merchantId;
-    private string $secret;
-    private string $env;
-    private string $merchandId;
-    private string $baseUrl;
 
-    public function __construct(string $merchandId, string $secret, string $env = 'sandbox')
+    public function __construct(string $merchantId, string $secret, string $env = 'sandbox')
     {
-        $this->secret = $secret;
-        $this->env = $env;
-        $this->merchandId = $merchandId;
-
-        if ($this->env === "live"){
-            $this->baseUrl = "https://payabl.com";
-        } else {
-            $this->baseUrl = "https://sandbox.payabl.com";
-        }
-        $this->config['secret'] = $this->secret;
-        $this->config['merchantId'] = $this->merchandId;
-        $this->config['baseUrl'] =  $this->baseUrl ;
+        $this->config['merchantId'] = $merchantId;
+        $this->config['secret'] = $secret;
+        $this->config['env'] = $env;
     }
 
     /**
@@ -108,7 +94,7 @@ class Payabl
     public function setCustomerData(array $params): self
     {
         $this->customerData = [
-            "customerip" => $params['customer_ip']??"",
+            "customerip" => $params['customer_ip'] ?? "",
             "email" => $params['email'],
             "firstname" => $params['firstname'],
             "lastname" => $params['lastname'],
@@ -127,7 +113,7 @@ class Payabl
         return $this;
     }
 
-    public function setShippingData(array $params):self
+    public function setShippingData(array $params): self
     {
         $this->customerAddress = [
             "shipping_state" => $params['shipping_state'] ?? "",
@@ -141,7 +127,7 @@ class Payabl
         return $this;
     }
 
-    public function setBillingData(array $params):self
+    public function setBillingData(array $params): self
     {
         $this->customerAddress = [
             "billing_country_code" => $params['billing_country_code'] ?? "",
@@ -174,8 +160,9 @@ class Payabl
     public function setCustomerOrder(array $params): self
     {
         $this->customerOrder = [
-            "amount" => $params['amount'],
-            "orderid" => $params['order_id']??"",
+            "amount" => $params['amount'] ?? 0.0,
+            "price" => $params['price'] ?? "",
+            "orderid" => $params['order_id'] ?? "",
             "currency" => $params['currency'] ?? "EUR",
             "notification_url" => $params['notification_url'] ?? "",
             "payment_method" => $params['payment_method'] ?? 1,

@@ -13,7 +13,7 @@ composer require payabl-com/php_sdk
 
 ```PHP
 use PayablSdkPhp\Payabl;
-$payabl = new Payabl();
+$payabl = new Payabl("gateway_test","b185","sandbox");
 $cardDetails = [
     "cardholder_name" => "John Doe",
     "ccn" => "5413530000000501",

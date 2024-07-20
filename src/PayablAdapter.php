@@ -17,7 +17,7 @@ class PayablAdapter
 
     public function __construct(?AbstractResource $resource = null)
     {
-      
+
         $this->merchantId = $resource->params['merchantId'];
         $this->secret = $resource->params['secret'];
         $this->client = new Client(
@@ -116,7 +116,6 @@ class PayablAdapter
 
     public function generateError(array $data, int $status): array
     {
-
         // For Payabl response
         if (array_key_exists('httpReason', $data)) {
             return [
@@ -131,6 +130,14 @@ class PayablAdapter
             return [
                 'message' => $data['detail'],
                 'reason' => $data['title'],
+                'code' => $status
+            ];
+        }
+        // For Payabl response
+        if ($status == 404) {
+            return [
+                'message' => 'URL is wrong. Check docs',
+                'reason' => "URL is wrong",
                 'code' => $status
             ];
         }
