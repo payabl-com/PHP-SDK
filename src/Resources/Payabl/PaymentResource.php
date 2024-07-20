@@ -3,6 +3,7 @@
 namespace PayablSdkPhp\Resources\Payabl;
 
 use PayablSdkPhp\DTO\Requests\PaymentRequest;
+use PayablSdkPhp\DTO\Responses\SessionResponse;
 use PayablSdkPhp\DTO\Responses\TransactionResponse;
 use PayablSdkPhp\DTO\Transaction;
 use PayablSdkPhp\Resources\AbstractPayablResource;
@@ -69,14 +70,12 @@ class PaymentResource extends AbstractPayablResource
         return $transaction;
     }
 
-    public function initialHostedPaymentPage():Transaction
+    public function initialHostedPaymentPage():SessionResponse
     {
         $this->validateParams(PaymentRequest::class,  $this->params);
         $url = '/init';
-        $transactionResponse = $this->adapter->handle('post',  $this->getApiRootPayment($this->getEnv()).$url,  $this->params, TransactionResponse::class);
-        $transaction = new Transaction();
-        $transaction->fullFillTransactionByPaymentPage( $transactionResponse);
-        return $transaction;
+        $sessionResponse = $this->adapter->handle('post',  $this->getApiRootPayment($this->getEnv()).$url,  $this->params, SessionResponse::class);
+        return $sessionResponse;
 
     }
 

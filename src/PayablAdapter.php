@@ -22,7 +22,6 @@ class PayablAdapter
         $this->secret = $resource->params['secret'];
         $this->client = new Client(
             [
-                'base_uri' => $resource->params["baseUrl"] . "/",
                 'headers' => [
                     'User-Agent' => 'Payabl PHP-SDK',
                     'Accept' => 'text/plain',

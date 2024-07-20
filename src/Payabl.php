@@ -153,6 +153,9 @@ class Payabl
             "house" => $params['house'] ?? "",
             "zip" => $params['zip'],
             "postbox" => $params['postbox'] ?? "",
+            "phone" => $params['phone'] ?? null,
+            "fax" => $params['fax'] ?? null,
+            "mobile" => $params['mobile'] ?? null,
         ];
         return $this;
     }
@@ -167,6 +170,7 @@ class Payabl
             "notification_url" => $params['notification_url'] ?? "",
             "payment_method" => $params['payment_method'] ?? 1,
             "url_return" => $params['url_return'] ?? "",
+            "related_token_ids" => $params['related_token_ids'] ?? null,
         ];
         return $this;
     }
@@ -179,6 +183,9 @@ class Payabl
             "notification_url" => $params['notification_url'] ?? null,
             "language" => $params['language'] ?? "en",
             "external_id" => $params['external_id'] ?? "",
+            "custom1" => $params['custom1'] ?? null,
+            "custom2" => $params['custom2'] ?? null,
+            "custom3" => $params['custom3'] ?? null,
         ];
         return $this;
     }

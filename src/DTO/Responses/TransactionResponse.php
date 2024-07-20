@@ -21,8 +21,7 @@ class TransactionResponse
     public int $userId = 0;
     public ?string $url3ds = null;
     public ?string $tokenId = null;
-    public ?string $sessionId = null;
-    public ?string $startUrl = null;
+
 
     public function __construct(array $data)
     {
@@ -41,13 +40,6 @@ class TransactionResponse
             $this->userId = (int)$data['user_id'] ?? 0;
         $this->url3ds = $data['url_3ds'] ?? null;
         $this->tokenId = $data['token_id'] ?? null;
-        if (isset($data['sessionid']))
-            $this->sessionId = $data['sessionid'] ?? null;
-
-        if (isset($data['start_url']))
-            $this->startUrl = $data['start_url'] ?? null;
-
-
     }
 
 }
